@@ -1,8 +1,8 @@
 import pandas as pd
 import requests
+from io import StringIO
 
-
-def items():
+def items_():
     
     '''This function brings in the items contenct dictionary from all pages at the 
        specified website, and then transforms it to a dataframe which it then returns'''
@@ -27,7 +27,7 @@ def items():
     return items
     
     
-def stores():
+def stores_():
     
     '''This function brings in the stores content dictionary from all pages at the 
        specified website, and thentransforms it to a dataframe which it then returns'''
@@ -80,16 +80,34 @@ def sales_acquire():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-def sales():
+def sales_():
      
-        '''This function returns a dataframe from a csv thats already in the directory'''
+    '''This function returns a dataframe from a csv thats already in the directory'''
         
         
     sales = pd.read_csv('zachsales_df.csv', index_col=0)
         
     return sales
         
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+def pull_csv(url):
+    
+    '''
+    This function pulls a .csv from a specified URL and returns a dataframe.
+    '''
+    
+    
+    req = requests.get(url)
+    data = StringIO(req.text)
+    df = pd.read_csv(data)
+    df = pd.DataFrame(df)
+    
+    return df
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def merge_dataframes():
     
@@ -97,13 +115,11 @@ def merge_dataframes():
     and then merges the sales and items data frames followed by a merge of the newly formed sales_merge data frame and store data frames.
     A new data frame called store_item_sales is return'''
     
-    global items
-    global stores
-    global sales
+     
     
-    items = items()
-    stores = stores()
-    sales = sales()
+    items = items_()
+    stores = stores_()
+    sales = sales_()
   
     sales.columns = ['item_id', 'sale_amount', 'sale_date', 'sale_id', 'store_id']
     
