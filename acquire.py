@@ -4,8 +4,10 @@ from io import StringIO
 
 def items_():
     
-    '''This function brings in the items content dictionary from all pages at the 
-       specified website, and then transforms it to a dataframe which it then returns'''
+    '''
+        This function brings in the items content dictionary from all pages at the 
+       specified website, and then transforms it to a dataframe which it then returns
+    '''
     
     items_list = []
     url = "https://python.zach.lol/api/v1/items"
@@ -29,8 +31,10 @@ def items_():
     
 def stores_():
     
-    '''This function brings in the stores content dictionary from all pages at the 
-       specified website, and then transforms it to a dataframe which it then returns'''
+    '''
+        This function brings in the stores content dictionary from all pages at the 
+       specified website, and then transforms it to a dataframe which it then returns
+    '''
     
     stores_list = []
     url = "https://python.zach.lol/api/v1/stores"
