@@ -127,10 +127,10 @@ def merge_dataframes():
     cols = ['item_id', 'item_brand', 'item_name', 'item_price', 'sale_amount', 'sale_date', 'sale_id', 'store_id', 'item_upc12', 'item_upc14']
     sales_merge = sales_merge[cols]
     
-    store_item_sales = pd.merge(stores, sales_merge, how='left', on=['store_id'], suffixes=['', '_'])
+    df = pd.merge(stores, sales_merge, how='left', on=['store_id'], suffixes=['', '_'])
     cols = ['item_id', 'item_brand', 'item_name', 'item_price', 'sale_amount', 'sale_date', 'sale_id', 'item_upc12', 'item_upc14', 'store_address', 
     'store_city', 'store_state', 'store_zipcode', 'store_id']
-    store_item_sales = store_item_sales[cols]
+    df = df[cols]
     
     
-    return store_item_sales
+    return df
