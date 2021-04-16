@@ -15,6 +15,12 @@ from acquire import items_, stores_, sales_, merge_dataframes, pull_csv
 
 def prep_csv():
     
+     '''
+    This function pulls a .csv from a specified URL and returns a dataframe. It then converts the date to datetime datatype and sets
+    it as the index. A month and year column are then created followed by code that fills any NaNs with zero
+    '''
+    
+    
     df = pull_csv("https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv")
     
     # convert date to date/time and set as index
@@ -37,6 +43,10 @@ def prep_csv():
     return df
 
 def plot_variables():
+    
+     '''
+    This function creates a historgram for every variable in the dataframe
+    '''
     
     df = prep_csv()
     
